@@ -1,0 +1,16 @@
+@use 'variables' as *;
+
+:root {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+#app {
+  background-color: $background-color;
+  color: $text-primary;
+  min-height: 100vh;
+  text-align: center;
+}
+
+

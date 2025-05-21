@@ -1,0 +1,43 @@
+@use 'variables' as *;
+
+.sort {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__button {
+    background-color: $white;
+    color: rgb(17, 21, 35);
+    font-size: $text-normal;
+    text-align: center;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $text-secondary;
+      color: $white;
+    }
+
+    &--active {
+      background-color: $text-secondary;
+      color: $white;
+    }
+  }
+
+  @media (max-width: 600px) {
+    & {
+      overflow-x: auto;
+    }
+
+    &__button {
+      padding: 6px 12px;
+    }
+  }
+}

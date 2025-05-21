@@ -1,0 +1,56 @@
+@use 'variables' as *;
+
+.planet-table {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $background-color;
+  color: $text-primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+
+  &__rows {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+  }
+}
+
+.planet-cell {
+  display: flex;
+  flex: 1 1 calc(50% - 8px);
+  flex-direction: column;
+  gap: 8px;
+  background-color: $white;
+  text-align: left;
+  transition: transform 0.3s;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  width: 100%;
+  min-width: 0;
+  max-width: calc(50% - 8px);
+
+  &__title {
+    font-size: $text-medium;
+    font-weight: bold;
+    color: $text-secondary;
+  }
+
+  &__detail {
+    border-bottom: 1px solid $text-secondary;
+
+    strong {
+      color: $text-primary;
+      font-weight: bold;
+    }
+  }
+
+  &__link {
+    color: $text-primary;
+    text-decoration: none;
+  }
+}
