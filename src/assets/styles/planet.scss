@@ -40,6 +40,10 @@
     color: $text-secondary;
   }
 
+  &__detail:last-child {
+    border-bottom: none;
+  }
+
   &__detail {
     border-bottom: 1px solid $text-secondary;
 
@@ -52,5 +56,10 @@
   &__link {
     color: $text-primary;
     text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    max-width: none;
+    flex: none;
   }
 }
