@@ -1,13 +1,13 @@
 <template>
   <div class="sort">
     <button
-      v-for="field in fields"
-      :key="field.key"
+      v-for="{ key, value } in fields"
+      :key="key"
       class="sort__button"
-      :class="{ 'sort__button--active': activeSort?.key === field.key }"
-      @click="updateSort(field)"
+      :class="{ 'sort__button--active': activeSort === key }"
+      @click="updateSort(key as keyof Field)"
     >
-      {{ field.value }}
+      {{ value }}
     </button>
   </div>
 </template>
@@ -17,12 +17,12 @@ import { ref } from 'vue';
 import type { Field } from '../types/types';
 
 interface SortListEmits {
-  (e: 'update:sort', value: string): void
+  (e: 'update:sort', value: keyof Field): void
 }
 
 const emit = defineEmits<SortListEmits>();
 
-const activeSort = ref<Field | null>(null);
+const activeSort = ref<string | null>(null);
 
 const fields: Field[] = [
   { key: "name", value: "Name" },
@@ -33,10 +33,10 @@ const fields: Field[] = [
   { key: "created", value: "Created" },
 ];
 
-const updateSort = (field: Field) => {
-  activeSort.value = activeSort.value?.key === field.key
+const updateSort = (field: keyof Field) => {
+  activeSort.value = activeSort.value === field
     ? null
     : field;
-  emit('update:sort', field.key);
+  emit('update:sort', field);
 }
 </script>

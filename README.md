@@ -5,6 +5,7 @@
 3. run developer server 'npm run dev'
 
 # Disclaimer
-Due to the lack of support for sorting, plain sorting on the already downloaded list has been used.
+Due to the lack of sorting support in the Swapi API, I used regular sorting on the current page.
+
 
 
