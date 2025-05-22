@@ -5,8 +5,8 @@
 .header {
   font-family: "Fascinate Inline", system-ui;
   background-color: $text-secondary;
-  font-size: $text-large;
-  line-height: 3rem;
+  font-size: $font-size-xl;
+  line-height: $line-height-large;
   text-align: center;
   display: flex;
   justify-content: center;

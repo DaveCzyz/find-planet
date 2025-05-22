@@ -9,7 +9,7 @@
     width: inherit;
     background-color: $white;
     color: $text-primary;
-    font-size: $text-medium;
+    font-size: $font-size-lg;
     border: 1px solid $text-secondary;
     border-radius: 4px;
     transition: border-color 0.3s;
@@ -31,7 +31,7 @@
     top: 50%;
     transform: translateY(-50%);
     background: $white;
-    font-size: $text-normal;
+    font-size: $font-size-base;
     color: $text-primary;
     border: 0;
     cursor: pointer;
