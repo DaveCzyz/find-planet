@@ -27,8 +27,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import type { Field } from '../types/types';
-import { SortOrder } from '../types/types';
+import type { Field } from '../shared/shared.ts';
+import { SortOrder } from '../shared/shared.ts';
 
 interface SortProps {
   direction?: SortOrder | null

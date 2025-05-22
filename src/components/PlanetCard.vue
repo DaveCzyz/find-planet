@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Planet } from '../types/types.ts';
+import type { Planet } from '../shared/shared.ts';
 import PlanetDetail from './PlanetDetail.vue';
 import { formatNumber } from '../helpers/formatNumber';
 

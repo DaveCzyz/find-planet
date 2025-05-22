@@ -4,7 +4,7 @@ import {
   Errors,
   FetchPlanets,
   Planet,
-} from '../types/types';
+} from '../shared/shared.ts';
 
 export function useFetch(): FetchPlanets {
   const url = import.meta.env.VITE_API_BASE_URL;

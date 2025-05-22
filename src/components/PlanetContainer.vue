@@ -34,8 +34,8 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue';
-import { SortOrder } from '../types/types';
-import type { Planet, Field } from '../types/types';
+import { SortOrder } from '../shared/shared.ts';
+import type { Planet, Field } from '../shared/shared.ts';
 
 import SearchInput from './SearchInput.vue';
 import SortList from './SortComponent.vue';
