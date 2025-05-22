@@ -6,6 +6,8 @@ import {
 } from '../types/types';
 
 export function useFetch(): FetchPlanets {
+  const url = import.meta.env.VITE_API_BASE_URL;
+
   const planets = ref<Planet[]>([]);
 
   const next = ref<string | null>(null);
@@ -15,7 +17,7 @@ export function useFetch(): FetchPlanets {
 
   const fetchPlanets = async (search: string, page: number) => {
     try {
-      await axios.get(`https://swapi.dev/api/planets/?search=${search}&page=${page}`).then((response) => {
+      await axios.get(`${url}/planets/?search=${search}&page=${page}`).then((response) => {
         planets.value = response.data.results;
         next.value = response.data.next;
         prev.value = response.data.previous;

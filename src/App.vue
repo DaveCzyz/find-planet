@@ -13,5 +13,5 @@ import Footer from './components/FooterComponent.vue';
 </script>
 
 <style lang="scss">
-@import './assets/styles/main';
+@forward 'assets/styles/main';
 </style>
