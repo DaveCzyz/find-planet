@@ -31,10 +31,6 @@
     }
   }
 
-  &__direction {
-    font-size: $text-small;
-  }
-
   @media (max-width: 600px) {
     & {
       overflow-x: auto;

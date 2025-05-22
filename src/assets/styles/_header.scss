@@ -5,7 +5,6 @@
 .header {
   font-family: "Fascinate Inline", system-ui;
   background-color: $text-secondary;
-  color: $white;
   font-size: $text-large;
   line-height: 3rem;
   text-align: center;
@@ -14,4 +13,9 @@
   align-items: center;
   gap: 8px;
   padding: 20px;
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
 }

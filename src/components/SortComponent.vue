@@ -12,23 +12,31 @@
         v-if="direction && activeSort === key"
         class="sort__direction"
       >
-        ({{ direction === SortOrder.ASCENDING ? 'asc' : 'desc' }})
+        {{ direction === SortOrder.ASCENDING ? '↑' : '↓' }}
       </span>
+    </button>
+    <button
+      v-if="activeSort"
+      class="sort__button"
+      @click="clearSort"
+    >
+      x
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue';
+import { ref } from 'vue';
 import type { Field } from '../types/types';
 import { SortOrder } from '../types/types';
 
 interface SortProps {
-  direction?: SortOrder
+  direction?: SortOrder | null
 }
 
 interface SortEmits {
-  (e: 'update:sort', value: keyof Field): void
+  (e: 'update:sort', value: keyof Field): void;
+  (e: 'update:direction', direction: SortOrder | null): void;
 }
 
 defineProps<SortProps>();
@@ -49,4 +57,9 @@ const updateSort = (field: keyof Field) => {
   activeSort.value = field;
   emit('update:sort', field);
 }
+
+const clearSort = () => {
+  activeSort.value = null;
+  emit('update:direction', null);
+};
 </script>

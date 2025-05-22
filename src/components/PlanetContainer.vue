@@ -7,6 +7,7 @@
     <SortList
       :direction="sortOrder"
       @update:sort="sortBy"
+      @update:direction="clearSort"
     />
 
     <template v-if="!errors">
@@ -56,13 +57,18 @@ const {
 const search = ref<string>("");
 const currentPage = ref<number>(1);
 const sortKey = ref<keyof Field | null>(null);
-const sortOrder = ref<SortOrder>(SortOrder.ASCENDING);
+const sortOrder = ref<SortOrder | null>(SortOrder.ASCENDING);
 
 const handleSearch = (searchValue: string) => {
   search.value = searchValue;
   currentPage.value = 1;
   fetchPlanets(search.value, currentPage.value);
 };
+
+const clearSort = () => {
+  sortKey.value = null;
+  sortOrder.value = null;
+}
 
 const sortBy = (key: keyof Field) => {
   if (sortKey.value === key) {

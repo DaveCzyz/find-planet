@@ -1,5 +1,5 @@
 <template>
   <header class="header">
-    Find Planet
+    <a href="">Find Planet</a>
   </header>
 </template>
