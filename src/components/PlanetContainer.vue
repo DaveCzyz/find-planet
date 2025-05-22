@@ -4,10 +4,14 @@
       :search="search"
       @update:search="handleSearch"
     />
-    <SortList @update:sort="sortBy"/>
+    <SortList
+      :direction="sortOrder"
+      @update:sort="sortBy"
+    />
 
     <template v-if="!errors">
       <Loading v-if="isLoading" />
+
       <div class="planet-table__rows">
         <PlanetCard
           v-for="planet in getSortedPlanets"
@@ -52,7 +56,7 @@ const {
 const search = ref<string>("");
 const currentPage = ref<number>(1);
 const sortKey = ref<keyof Field | null>(null);
-const sortOrder = ref<SortOrder>(SortOrder.Ascending);
+const sortOrder = ref<SortOrder>(SortOrder.ASCENDING);
 
 const handleSearch = (searchValue: string) => {
   search.value = searchValue;
@@ -62,23 +66,41 @@ const handleSearch = (searchValue: string) => {
 
 const sortBy = (key: keyof Field) => {
   if (sortKey.value === key) {
-    sortOrder.value = sortOrder.value === SortOrder.Ascending
-      ? SortOrder.Descending
-      : SortOrder.Ascending;
+    sortOrder.value = sortOrder.value === SortOrder.ASCENDING
+      ? SortOrder.DESCENDING
+      : SortOrder.ASCENDING;
   } else {
     sortKey.value = key;
-    sortOrder.value = SortOrder.Ascending;
+    sortOrder.value = SortOrder.ASCENDING;
   }
 };
 
 const getSortedPlanets = computed(() => {
   const key = sortKey.value as keyof Planet;
-  const direction = sortOrder.value === SortOrder.Ascending ? 1 : -1;
+  const direction = sortOrder.value === SortOrder.ASCENDING ? 1 : -1;
 
   return planets.value.slice().sort((a, b) => {
-    const valA = String(a[key]);
-    const valB = String(b[key]);
-    return valA.localeCompare(valB) * direction;
+    const valA = a[key];
+    const valB = b[key];
+
+    const isUnknownA = valA === "unknown" || valA === null || valA === undefined;
+    const isUnknownB = valB === "unknown" || valB === null || valB === undefined;
+
+    if (isUnknownA && isUnknownB) {
+      return 0;
+    }
+
+    if (isUnknownA) return 1;
+    if (isUnknownB) return -1;
+
+    const numA = Number(valA);
+    const numB = Number(valB);
+
+    if (!isNaN(numA) && !isNaN(numB)) {
+      return (numA - numB) * direction;
+    }
+
+    return String(valA).localeCompare(String(valB)) * direction;
   });
 });
 

@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import {
+  Errors,
   FetchPlanets,
   Planet,
 } from '../types/types';
@@ -24,14 +25,14 @@ export function useFetch(): FetchPlanets {
       });
 
       errors.value = planets.value.length === 0
-        ? "No results. Try another one."
+        ? Errors.NO_RESULTS
         : '';
 
     } catch (error) {
       planets.value = [];
       next.value = null;
       prev.value = null;
-      errors.value = 'Oops, something went wrong. Please try again later.';
+      errors.value = Errors.API_FAILED;
     }
   };
 

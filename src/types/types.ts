@@ -1,8 +1,13 @@
 import { Ref } from 'vue';
 
 export enum SortOrder {
-  Ascending = "asc",
-  Descending = "desc",
+  ASCENDING = "asc",
+  DESCENDING = "desc",
+}
+
+export enum Errors {
+  NO_RESULTS = 'No results. Try another one.',
+  API_FAILED = 'Oops, something went wrong. Please try again later.'
 }
 
 export interface Field {
@@ -27,3 +32,4 @@ export interface FetchPlanets {
   errors: Ref<string>;
   fetchPlanets: (search: string, page: number) => Promise<void>;
 }
+

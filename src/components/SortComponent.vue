@@ -8,19 +8,31 @@
       @click="updateSort(key as keyof Field)"
     >
       {{ value }}
+      <span
+        v-if="direction && activeSort === key"
+        class="sort__direction"
+      >
+        ({{ direction === SortOrder.ASCENDING ? 'asc' : 'desc' }})
+      </span>
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import type { Field } from '../types/types';
+import { SortOrder } from '../types/types';
 
-interface SortListEmits {
+interface SortProps {
+  direction?: SortOrder
+}
+
+interface SortEmits {
   (e: 'update:sort', value: keyof Field): void
 }
 
-const emit = defineEmits<SortListEmits>();
+defineProps<SortProps>();
+const emit = defineEmits<SortEmits>();
 
 const activeSort = ref<string | null>(null);
 
@@ -34,9 +46,7 @@ const fields: Field[] = [
 ];
 
 const updateSort = (field: keyof Field) => {
-  activeSort.value = activeSort.value === field
-    ? null
-    : field;
+  activeSort.value = field;
   emit('update:sort', field);
 }
 </script>
